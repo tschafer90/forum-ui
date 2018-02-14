@@ -1,0 +1,45 @@
+<nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="/forum">Forum</a></li>
+        <li><a ui-sref="category({ categoryId: thread.current.category.data.id })">{{ thread.current.category.data.title }}</a></li>
+        <li class="is-active"><a href="#" aria-current="page">{{ thread.current.title }}</a></li>
+    </ul>
+</nav>
+<div class="box post">
+    <h5 class="title is-5">{{ thread.current.title }}</h5>
+    <hr>
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-64x64">
+                <img src="http://forum.api/images/{{ thread.current.user.data.avatar }}">
+            </figure>
+        </div>
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>{{ thread.current.user.data.name }}</strong><span class="has-text-grey"> posted {{ thread.current.date_diff }}</span>
+                    <br>
+                    {{ thread.current.body }}
+                </p>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="post box" ng-repeat="comment in thread.current.comments.data">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-64x64">
+                <img src="http://forum.api/images/{{ comment.user.data.avatar }}">
+            </figure>
+        </div>
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>{{ comment.user.data.name }}</strong> <span class="has-text-grey"> replied {{ comment.date_diff }}</span>
+                    <br>
+                    {{ comment.body }}
+                </p>
+            </div>
+        </div>
+    </article>
+</div>

@@ -1,0 +1,41 @@
+<nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="/forum">Forum</a></li>
+        <li class="is-active"><a href="#" aria-current="page">{{ category.current.title }}</a></li>
+    </ul>
+</nav>
+
+<div class="box post">
+    <h4 class="title is-4">{{ category.current.title }}</h4>
+</div>
+
+<a ng-repeat="thread in category.current.threads.data" ui-sref="thread({ threadId: thread.id})">
+    <div class="post box is-link">
+        <article class="media">
+            <div class="media-content">
+                <div class="content">
+                    <span class="subtitle is-5">{{ thread.title }}</span>
+                    <br>
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <i class="image is-32x32"><img
+                                        src="http://forum.api/images/{{ thread.user.data.avatar }}"></i>
+                            </div>
+                            <div class="level-item">
+                                <p>
+                                    <strong>{{ thread.user.data.name }}</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="media-right">
+                <span class="has-text-grey-light is-pulled-right"><i class="fa fa-comments"></i> {{ thread.comment_count }}</span>
+                <br>
+                <span class="has-text-grey-light"><strong>{{ thread.mostRecentComment.data.user.data.name }}</strong> replied {{ thread.mostRecentComment.data.date_diff }}</span>
+            </div>
+        </article>
+    </div>
+</a>
